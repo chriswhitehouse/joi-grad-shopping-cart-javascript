@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1615973106758" clover="3.2.0">
-  <project timestamp="1615973106758" name="All files">
+<coverage generated="1616003069416" clover="3.2.0">
+  <project timestamp="1616003069416" name="All files">
     <metrics statements="30" coveredstatements="28" conditionals="4" coveredconditionals="4" methods="11" coveredmethods="8" elements="45" coveredelements="40" complexity="0" loc="30" ncloc="30" packages="1" files="4" classes="4"/>
     <file name="Customer.js" path="/Users/chriswhitehouse/Projects/joi-grad-shopping-cart-javascript/src/model/Customer.js">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>

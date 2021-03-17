@@ -8,7 +8,7 @@ describe("Shopping cart should checkout", () => {
         const customer = new Customer("Test customer");
         const products = [new Product(100, "DIS_10_TestProduct", "Test product")];
         const shoppingCart = new ShoppingCart(customer, products);
-        
+
         const order = shoppingCart.checkout();
 
         expect(order.totalPrice).toBe(90);
@@ -23,6 +23,17 @@ describe("Shopping cart should checkout", () => {
         const order = shoppingCart.checkout();
 
         expect(order.totalPrice).toBe(127.5);
+        expect(order.loyaltyPoints).toBe(10);
+    });
+
+    it("Should calculate correct total and loyalty points for 20% discounted products", () => {
+        const customer = new Customer("Test customer");
+        const products = [new Product(200, "DIS_20_TestProduct", "Test product")];
+        const shoppingCart = new ShoppingCart(customer, products);
+
+        const order = shoppingCart.checkout();
+
+        expect(order.totalPrice).toBe(160);
         expect(order.loyaltyPoints).toBe(10);
     });
 

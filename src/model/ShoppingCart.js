@@ -27,6 +27,9 @@ export default class ShoppingCart {
             } else if (product.code.startsWith("DIS_15")) {
                 discount = product.price * 0.15;
                 loyaltyPointsEarned += product.price / 15;
+            } else if (product.code.startsWith("DIS_20")) {
+                discount = product.price * 0.2;
+                loyaltyPointsEarned += product.price / 20;
             } else {
                 loyaltyPointsEarned += product.price / 5;
             }
@@ -38,7 +41,7 @@ export default class ShoppingCart {
     };
 
     displaySummary = () =>  {
-        return "Customer: " + this.customer.name + "\n" + 
+        return "Customer: " + this.customer.name + "\n" +
             "Bought:  \n" + this.products.map(p => "- " + p.name + ", " + p.price).join('\n');
     }
 };
