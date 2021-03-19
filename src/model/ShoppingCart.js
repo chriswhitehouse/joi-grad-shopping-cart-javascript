@@ -16,29 +16,36 @@ export default class ShoppingCart {
     };
 
     checkout = () => {
-        let totalPrice = 0;
-        let loyaltyPointsEarned = 0;
-
-        this.products.forEach(product => {
-            let discount = 0;
-            if (product.code.startsWith("DIS_10")) {
-                discount = product.price * 0.1;
-                loyaltyPointsEarned += product.price / 10;
-            } else if (product.code.startsWith("DIS_15")) {
-                discount = product.price * 0.15;
-                loyaltyPointsEarned += product.price / 15;
-            } else if (product.code.startsWith("DIS_20")) {
-                discount = product.price * 0.2;
-                loyaltyPointsEarned += product.price / 20;
-            } else {
-                loyaltyPointsEarned += product.price / 5;
-            }
-
-            totalPrice += product.price - discount;
-        });
-
-        return new Order(totalPrice, loyaltyPointsEarned);
+        return new Order(this._totalPrice(), this._loyaltyPointsEarned());
     };
+
+    _totalPrice = () => {
+      let totalPrice = 0;
+
+      this.products.forEach(product => {
+          totalPrice += product.price - product.getDiscount();
+      });
+
+      return totalPrice
+    }
+
+    _loyaltyPointsEarned = () => {
+      let loyaltyPointsEarned = 0;
+
+      this.products.forEach(product => {
+          if (product.code.startsWith("DIS_10")) {
+              loyaltyPointsEarned += product.price / 10;
+          } else if (product.code.startsWith("DIS_15")) {
+              loyaltyPointsEarned += product.price / 15;
+          } else if (product.code.startsWith("DIS_20")) {
+              loyaltyPointsEarned += product.price / 20;
+          } else {
+              loyaltyPointsEarned += product.price / 5;
+          }
+      });
+
+      return loyaltyPointsEarned
+    }
 
     displaySummary = () =>  {
         return "Customer: " + this.customer.name + "\n" +
